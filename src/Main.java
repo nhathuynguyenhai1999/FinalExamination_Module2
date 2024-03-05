@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -32,6 +30,7 @@ public class Main {
                     break;
                 case 5:
                     System.out.print("Sort in ascending order? (true/false): ");
+                    String sortChoice = scanner.nextLine();
                     boolean ascending = scanner.nextBoolean();
                     pm.sortProducts(ascending);
                     break;

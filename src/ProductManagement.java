@@ -7,6 +7,7 @@ import java.util.*;
 public class ProductManagement {
     ArrayList<Product> products = new ArrayList<>();
     public void displayProducts() {
+        displayProductsFromFile();
         for (int i = 0; i < products.size(); i++) {
             Product p = products.get(i);
             System.out.println("Product " + (i + 1));
@@ -17,8 +18,27 @@ public class ProductManagement {
             System.out.println("Description: " + p.description);
         }
     }
+    private void displayProductsFromFile() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("data/products.csv"));
+            String line;
+            int count = 1;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                System.out.println("Product " + count++);
+                System.out.println("Code: " + parts[0]);
+                System.out.println("Name: " + parts[1]);
+                System.out.println("Price: " + parts[2]);
+                System.out.println("Quantity: " + parts[3]);
+                System.out.println("Description: " + parts[4]);
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+    }
+
     public void addProduct(Scanner scanner){
-//        System.out.println("Enter product details:");
         // Nhập mã sản phẩm
         System.out.println("Enter product code:");
         String code = scanner.nextLine();
@@ -39,6 +59,8 @@ public class ProductManagement {
         products.add(new Product(code, name, price, quantity, description));
         System.out.println("Product added successfully.");
     }
+
+
 
     public void updateProduct(Scanner scanner) {
         System.out.print("Enter product code to update: ");
@@ -126,5 +148,4 @@ public class ProductManagement {
             System.out.println("Error writing to file: " + e.getMessage());
         }
     }
-
 }
