@@ -2,10 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.util.*;
 
 public class ProductManagement {
     ArrayList<Product> products = new ArrayList<>();
@@ -21,7 +18,7 @@ public class ProductManagement {
         }
     }
     public void addProduct(Scanner scanner){
-        System.out.println("Enter product details:");
+//        System.out.println("Enter product details:");
         // Nhập mã sản phẩm
         System.out.println("Enter product code:");
         String code = scanner.nextLine();
@@ -63,23 +60,31 @@ public class ProductManagement {
         }
         System.out.println("Product not found.");
     }
-    public void deleteProduct(Scanner scanner){
+    public void deleteProduct(Scanner scanner) {
         System.out.print("Enter product code to delete: ");
         String code = scanner.nextLine();
-        for (Product p : products) {
+        boolean found = false;
+        for (int i = 0; i < products.size(); ) {
+            Product p = products.get(i);
             if (p.code.equals(code)) {
-                products.remove(p);
+                products.remove(i);
                 System.out.println("Product deleted successfully.");
-                return;
+                found = true;
+            } else {
+                i++; // Tăng giá trị của i chỉ khi không xóa sản phẩm
             }
         }
-        System.out.println("Product not found.");
+        if (!found) {
+            System.out.println("Product not found.");
+        }
     }
+
+
     public void sortProducts(boolean ascending) {
         if (ascending) {
-            Collections.sort(products, Comparator.comparingDouble(p -> p.price));
+            products.sort(Comparator.comparingDouble(p -> p.price));
         } else {
-            Collections.sort(products, Comparator.comparingDouble((Product p) -> p.price).reversed());
+            products.sort(Comparator.comparingDouble((Product p) -> p.price).reversed());
         }
         System.out.println("Products sorted successfully.");
     }
