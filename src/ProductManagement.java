@@ -41,10 +41,10 @@ public class ProductManagement {
     public void addProduct(Scanner scanner){
         // Nhập mã sản phẩm
         System.out.println("Enter product code:");
-        String code = scanner.nextLine();
+        String code = scanner.next();
         // Nhập tên sản phẩm
         System.out.println("Enter product name:");
-        String name = scanner.nextLine();
+        String name = scanner.next();
         // Nhập giá sản phẩm
         System.out.println("Enter product price:");
         double price = scanner.nextDouble();
@@ -54,7 +54,7 @@ public class ProductManagement {
         int quantity = Integer.parseInt(scanner.nextLine());
         // Nhập mô tả sản phẩm
         System.out.println("Enter product description:");
-        String description = scanner.nextLine();
+        String description = scanner.next();
         // Tạo sản phẩm mới và thêm vào danh sách
         products.add(new Product(code, name, price, quantity, description));
         System.out.println("Product added successfully.");
