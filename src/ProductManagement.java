@@ -84,7 +84,7 @@ public class ProductManagement {
     }
     public void deleteProduct(Scanner scanner) {
         System.out.print("Enter product code to delete: ");
-        String code = scanner.nextLine();
+        String code = scanner.next();
         boolean found = false;
         for (int i = 0; i < products.size(); ) {
             Product p = products.get(i);
